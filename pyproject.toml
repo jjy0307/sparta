@@ -4,11 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["jjy0307 <adz7546@gmail.com>"]
 
+
 [tool.poetry.dependencies]
 python = "^3.9"
 Django = "4.0"
 django-ninja = "0.16.1"
 black = "22.3.0"
+django-stubs = "1.9.0"
+mypy = "0.931"
 
 [tool.poetry.dev-dependencies]
 
@@ -18,3 +21,19 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+python_version = 3.9
+strict = true
+
+[[tool.mypy.overrides]]
+module = "*.migrations.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "manage"
+ignore_errors = true
+
+[tool.django-stubs]
+django_settings_module = "sparta.settings"
